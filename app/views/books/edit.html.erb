@@ -5,20 +5,39 @@
 </head>
 <body>
 	<h1>Editing Book</h1>
-	<% @book.errors.full_messages.each do |message| %>
-		<div class ="error-form">
-			<%= message %>
+	<%= form_for(@book, url: book_path ) do |f| %>
+		<% if @book.errors.any? %>
+			<div id ="error-explanation">
+				<h2> errors prohibited this book from being saved</h2>
+				<ul>
+					<% @book.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<div class ="text-field">
+			<div class="field_with_errors">
+				<label for ="book-title">Title</label>
+			</div>
+			<div class="field_with_errors">
+				<%= f.text_field :title  %>
+			</div>
+		</div>
+		<div class ="text-field">
+			<div class="field_with_errors">
+				<label for ="book-body">Body</label>
+			</div>
+			<div class="field_with_errors">
+				<%= f.text_area :body  %>
+			</div>
+		</div>
+		<div class ="btn-field" >
+			<%= f.submit "Update Book"  %>
 		</div>
 	<% end %>
-	<%= form_for(@book, url: book_path ) do |f| %>
-		<p>Title</p>
-		<%= f.text_field :title  %>
-		<p>Body</p>
-		<%= f.text_area :body  %>
-		<br><%= f.submit "Update Book" %></br>
-	<% end %>
-	<%= link_to "Show", book_path(@book) %>
+	<%= link_to "Show", book_path(@book), class: "link"%>
 	|
-	<%= link_to "Back", books_path %>
+	<%= link_to "Back", books_path, class: "link" %>
 </body>
 </html>

@@ -6,10 +6,10 @@
 <body>
 	<%= flash[:success] %>
 	<%= flash[:update] %>
-	<p><span>Title:</span><%= @book.title %></p>
-	<p><span>Body:</span><%= @book.body %></p>
-	<%= link_to "Edit", edit_book_path(@book) %>
+	<p><strong>Title:</strong><%= @book.title %></p>
+	<p><strong>Body:</strong><%= @book.body %></p>
+	<%= link_to "Edit", edit_book_path(@book), class: "link" %>
 	|
-	<%= link_to "Back", books_path %>
+	<%= link_to "Back", books_path, class: "link" %>
 </body>
 </html>
